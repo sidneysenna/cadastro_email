@@ -4,6 +4,7 @@ public class ClienteInclusaoDTO {
 
 	private String cpf;
 	private String email;
+	private EnderecoInclusaoDTO endereco;
 	
 	
 	public ClienteInclusaoDTO() {
@@ -24,6 +25,14 @@ public class ClienteInclusaoDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public EnderecoInclusaoDTO getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoInclusaoDTO endereco) {
+		this.endereco = endereco;
 	}
 	
 	

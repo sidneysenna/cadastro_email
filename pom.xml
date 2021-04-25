@@ -103,5 +103,6 @@
     <modules>
     	<module>emailapp-domain</module>
     	<module>emailapp-service</module>
+    	<module>emailapp-persistence</module>
     </modules>
 </project>
