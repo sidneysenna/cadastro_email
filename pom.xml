@@ -99,4 +99,7 @@
     </reporting>
 
 	
+    <modules>
+    	<module>emailapp-domain</module>
+    </modules>
 </project>
