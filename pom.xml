@@ -105,6 +105,7 @@
     	<module>emailapp-domain</module>
     	<module>emailapp-service</module>
     	<module>emailapp-persistence</module>
-    <module>emailapp-rest</module>
-  </modules>
+	    <module>emailapp-rest</module>
+	    <module>emailapp-ear</module>
+    </modules>
 </project>

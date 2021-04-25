@@ -5,10 +5,10 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
-        <dependent-module archiveName="ten-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ten-domain/ten-domain">
+        <dependent-module archiveName="emailapp-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/emailapp-service/emailapp-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ten-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ten-service/ten-service">
+        <dependent-module archiveName="emailapp-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/emailapp-domain/emailapp-domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="emailapp-rest"/>

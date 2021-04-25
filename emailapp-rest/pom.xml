@@ -12,20 +12,7 @@
     <name>presentation layer of application</name>
 
     <dependencies>
-		<!-- ini domain -->
-		<dependency>			
-			<groupId>br.tec.fidelis</groupId>
-    		<artifactId>ten-domain</artifactId>
-    		<version>${project.version}</version>			
-		</dependency>
-		<!-- fim domain -->
-		
-		<dependency>
-			<groupId>br.tec.fidelis</groupId>
-			<artifactId>ten-service</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		
+				
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-jaxrs</artifactId>
@@ -36,7 +23,7 @@
 		<dependency>
 			<groupId>br.tec.email</groupId>
 			<artifactId>emailapp-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
     </dependencies>
 </project>

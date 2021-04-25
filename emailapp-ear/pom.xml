@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>br.tec.email</groupId>
+    <artifactId>emailapp</artifactId>
+    <version>${project.version}</version>
+  </parent>
+  <groupId>br.tec.email.emailapp</groupId>
+  <artifactId>emailapp-ear</artifactId>
+  <packaging>ear</packaging>
+  <name>emailapp-ear</name>
+  <description>modulo de deploy da aplicacao</description>
+  
+  
+  <build>
+		<finalName>${project.parent.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<filtering>true</filtering>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<generateApplicationXml>true</generateApplicationXml>
+					<fileNameMapping>no-version</fileNameMapping>
+					<modules>
+						<webModule>
+							<groupId>br.tec.email</groupId>
+							<artifactId>emailapp-rest</artifactId>
+							<contextRoot>/emailapp-backend</contextRoot>
+							<uri>emailapp-rest.war</uri>
+						</webModule>
+						<ejbModule>
+							<groupId>br.tec.email</groupId>
+							<artifactId>emailapp-service</artifactId>
+						</ejbModule>
+						<ejbModule>
+							<groupId>br.tec.email</groupId>
+							<artifactId>emailapp-persistence</artifactId>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>			
+		</plugins>
+	</build>
+
+	<dependencies>		
+		<dependency>
+			<groupId>br.tec.email</groupId>
+			<artifactId>emailapp-service</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>br.tec.email</groupId>
+			<artifactId>emailapp-persistence</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>br.tec.email</groupId>
+			<artifactId>emailapp-rest</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
+  
+  
+  
+</project>
