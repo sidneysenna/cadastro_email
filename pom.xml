@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.tec.email</groupId>
+  <artifactId>emailapp</artifactId>
+  <version>${project.version}</version>
+  <name>emailapp</name>
+  <description>Busca de cadastro por email</description>
+  
+  <packaging>pom</packaging>
+
+	<properties>
+		<project.version>0.0.1-SNAPSHOT</project.version>
+		<version.dependency.javaee>8.0</version.dependency.javaee>
+		<java.version>1.8</java.version>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <mockito.version>2.23.0</mockito.version>
+        <swagger>1.5.18</swagger>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.hibernate>5.4.0.Final</version.hibernate>
+		<jpamodelgen.output.directory>target/generated-sources/annotations</jpamodelgen.output.directory>
+		<surefire.version>3.0.0-M3</surefire.version>
+		<site.version>3.8.2</site.version>
+		<maven-compiler.version>3.8.1</maven-compiler.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${version.dependency.javaee}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+  
+	  	<!-- junit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-junit-jupiter</artifactId>
+		    <version>${mockito.version}</version>
+		    <scope>test</scope>
+		</dependency>  
+        	  
+	</dependencies>
+
+	<build>
+        <plugins>
+
+            <!-- is used during the test phase of the build lifecycle to 
+            execute the unit tests of an application. 
+            It generates reports in two different file formats: txt and xml-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${site.version}</version>
+            </plugin>
+
+			<!-- is used to compile the sources of project -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+
+	
+</project>
