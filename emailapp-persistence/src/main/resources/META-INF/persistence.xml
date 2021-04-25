@@ -6,14 +6,16 @@
 	<persistence-unit name="br.gov.pbh.prodabel.sigear"
 		transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/aplicacaoDS</jta-data-source>
-		<class>br.tec.fidelis.ten.dataprovider.entity.template.TemplateEntity</class>
+		<jta-data-source>java:/emailappDS</jta-data-source>
+		<class>br.tec.email.emailapp.persistence.entity.template.TemplateEntity</class>
 		<properties>
 			<property name="hibernate.default_schema" value="sigear" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" /> 			<!-- property name="hibernate.hbm2ddl.auto" value="update"/ --> 			<!-- Envers -->
+			<property name="hibernate.format_sql" value="true" /> 			
+			<property name="hibernate.hbm2ddl.auto" value="update"/> 			
+			<!-- Envers -->
 			<property name="org.hibernate.envers.revision_field_name"
 				value="id_revisao" />
 			<property
