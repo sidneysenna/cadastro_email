@@ -22,6 +22,7 @@
 		<surefire.version>3.0.0-M3</surefire.version>
 		<site.version>3.8.2</site.version>
 		<maven-compiler.version>3.8.1</maven-compiler.version>
+		
 	</properties>
 
 	<dependencies>
@@ -101,5 +102,6 @@
 	
     <modules>
     	<module>emailapp-domain</module>
+    	<module>emailapp-service</module>
     </modules>
 </project>
