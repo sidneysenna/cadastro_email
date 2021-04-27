@@ -36,7 +36,11 @@ class InclusaoCadastroTest {
 		when(repository.clienteJaCadastrado(cliente)).thenReturn(false);
 		when(repository.cadastrarCliente(cliente)).thenReturn(cliente);
 		
-		lenient().when(enderecoClient.getEnderecoCompleto("cep")).thenReturn(endereco);
+		try {
+			lenient().when(enderecoClient.getEnderecoCompleto("cep")).thenReturn(endereco);
+		} catch (EnderecoNaoExistenteException e1) {
+			
+		}
 		
 		InclusaoCadastro inclusaoCadastro = new InclusaoCadastroHU(repository, enderecoClient);
 		

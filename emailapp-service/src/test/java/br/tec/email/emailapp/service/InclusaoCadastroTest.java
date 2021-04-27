@@ -43,7 +43,10 @@ class InclusaoCadastroTest {
 		lenient().when(repository.clienteJaCadastrado(cliente)).thenReturn(false);
 		lenient().when(repository.cadastrarCliente(Mockito.any())).thenReturn(cliente);
 		
-		lenient().when(enderecoClient.getEnderecoCompleto("cep")).thenReturn(endereco);
+		try {
+			lenient().when(enderecoClient.getEnderecoCompleto("cep")).thenReturn(endereco);
+		} catch (EnderecoNaoExistenteException e1) {
+		}
 		
 		InclusaoCadastroServiceBean inclusaoCadastro = new InclusaoCadastroServiceBean();
 		inclusaoCadastro.setEnderecoClient(enderecoClient);
