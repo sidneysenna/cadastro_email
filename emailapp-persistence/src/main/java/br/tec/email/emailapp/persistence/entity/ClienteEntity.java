@@ -3,10 +3,12 @@ package br.tec.email.emailapp.persistence.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import br.tec.email.emailapp.persistence.entity.template.TemplateEntity;
 
@@ -19,13 +21,15 @@ public class ClienteEntity extends TemplateEntity<Integer>{
 	 */
 	private static final long serialVersionUID = 925102901970045187L;
 
-	@Id
+	@Id @GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
+	@NotNull
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
 	
+	@NotNull
 	@Column(name = "email", nullable = false)
 	private String email;
 	

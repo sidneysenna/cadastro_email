@@ -9,5 +9,7 @@ public interface InclusaoCadastroRepository {
 	boolean clienteJaCadastrado(Cliente cliente);
 	
 	
+	
+	
 
 }

@@ -12,14 +12,20 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.tec.email.emailapp.domain.entity.Cliente;
+import br.tec.email.emailapp.domain.entity.Endereco;
+import br.tec.email.emailapp.domain.hu.inclusaocadastro.ClienteJaCadastradoException;
+import br.tec.email.emailapp.domain.hu.inclusaocadastro.EnderecoClient;
+import br.tec.email.emailapp.domain.hu.inclusaocadastro.EnderecoNaoExistenteException;
 import br.tec.email.emailapp.domain.hu.inclusaocadastro.InclusaoCadastroRepository;
-import br.tec.email.emailapp.service.inclusaocadastro.InclusaoCadastroException;
-import br.tec.email.emailapp.service.inclusaocadastro.InclusaoCadastroService;
+import br.tec.email.emailapp.service.dto.ClienteInclusaoDTO;
+import br.tec.email.emailapp.service.dto.EnderecoInclusaoDTO;
 import br.tec.email.emailapp.service.inclusaocadastro.InclusaoCadastroServiceBean;
-import br.tec.email.emailapp.service.inclusaocadastro.dto.ClienteInclusaoDTO;
 
 @ExtendWith(MockitoExtension.class)
 class InclusaoCadastroTest {
+	
+	@Mock
+	EnderecoClient enderecoClient;
 	
 	@Mock
 	InclusaoCadastroRepository repository;
@@ -28,19 +34,33 @@ class InclusaoCadastroTest {
 	@DisplayName("Verifica se ocorre cadastro em caso de cliente nao existir na base de dados")
     @Test
 	void testInclusaoClienteNaoExistente() {
-		ClienteInclusaoDTO clienteDTO = new ClienteInclusaoDTO("cpf","email");
+		
+		Endereco endereco = new Endereco();
+		endereco.setCep("cep");
 		Cliente cliente = new Cliente("cpf","email");
+		cliente.setEndereco(endereco);
 		
 		lenient().when(repository.clienteJaCadastrado(cliente)).thenReturn(false);
 		lenient().when(repository.cadastrarCliente(Mockito.any())).thenReturn(cliente);
 		
-		InclusaoCadastroService inclusaoCadastro = new InclusaoCadastroServiceBean(repository);
+		lenient().when(enderecoClient.getEnderecoCompleto("cep")).thenReturn(endereco);
 		
-		ClienteInclusaoDTO clienteCadastrado = null;
+		InclusaoCadastroServiceBean inclusaoCadastro = new InclusaoCadastroServiceBean();
+		inclusaoCadastro.setEnderecoClient(enderecoClient);
+		inclusaoCadastro.setRepositoryDAO(repository);
+		
+		ClienteInclusaoDTO clienteCadastrado = new ClienteInclusaoDTO();
+		clienteCadastrado.setCpf("cpf");
+		clienteCadastrado.setEmail("email");
+		EnderecoInclusaoDTO endCadastrado = new EnderecoInclusaoDTO();
+		endCadastrado.setCep("cep");
+		clienteCadastrado.setEndereco(endCadastrado);
 		
 		try {
-			clienteCadastrado = inclusaoCadastro.cadastrarCliente(clienteDTO);
-		} catch (InclusaoCadastroException e) {
+			clienteCadastrado = inclusaoCadastro.cadastrarCliente(clienteCadastrado);
+		} catch (ClienteJaCadastradoException e) {
+			fail(e.getMessage());
+		} catch (EnderecoNaoExistenteException e) {
 			fail(e.getMessage());
 		}
 		

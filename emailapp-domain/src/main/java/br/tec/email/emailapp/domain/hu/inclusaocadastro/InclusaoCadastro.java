@@ -4,6 +4,6 @@ import br.tec.email.emailapp.domain.entity.Cliente;
 
 public interface InclusaoCadastro {
 	
-	Cliente cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException;
+	Cliente cadastrarCliente(Cliente cliente) throws ClienteJaCadastradoException, EnderecoNaoExistenteException;
 	
 }

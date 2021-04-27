@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -16,8 +15,7 @@ public abstract class TemplateDAO <K extends Serializable, T extends TemplateEnt
 	protected static final String AND = " AND ";
 	protected static final String OR = " OR ";
 
-	@PersistenceContext(unitName = "br.gov.pbh.prodabel.sigear")
-	private EntityManager em;
+	private EntityManager entityManager;
 
 	private Class<T> clazz;
 
@@ -28,20 +26,20 @@ public abstract class TemplateDAO <K extends Serializable, T extends TemplateEnt
 	public List<T> listar() {
 		CriteriaQuery<T> q = getCriteriaBuilder().createQuery(clazz);
 		Root<T> c = q.from(clazz);				
-		return em.createQuery(q.select(c)).getResultList();
+		return entityManager.createQuery(q.select(c)).getResultList();
 	}
 
 	public T consultarPorId(K id) {
-		return em.find(clazz, id);
+		return entityManager.find(clazz, id);
 	}
 
 	public T gravar(T objeto) {
 		if (objeto.getId() == null) {
-			em.persist(objeto);
+			entityManager.persist(objeto);
 			return objeto;
 		}
 
-		return em.merge(objeto);
+		return entityManager.merge(objeto);
 	}
 
 	public void excluir(K id) {
@@ -50,15 +48,19 @@ public abstract class TemplateDAO <K extends Serializable, T extends TemplateEnt
 	}
 
 	public void excluir(T objeto) {
-		em.remove(objeto);
+		entityManager.remove(objeto);
 	}
 
 	protected CriteriaBuilder getCriteriaBuilder() {
-		return em.getCriteriaBuilder();
+		return entityManager.getCriteriaBuilder();
 	}
 
 	public EntityManager getEntityManager() {
-		return em;
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 
 

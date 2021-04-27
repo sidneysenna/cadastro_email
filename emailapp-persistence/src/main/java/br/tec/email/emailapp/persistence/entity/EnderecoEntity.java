@@ -2,9 +2,11 @@ package br.tec.email.emailapp.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import br.tec.email.emailapp.persistence.entity.template.TemplateEntity;
 
@@ -18,13 +20,15 @@ public class EnderecoEntity extends TemplateEntity<Integer>{
 	 */
 	private static final long serialVersionUID = -5225023337709675387L;
 
-	@Id
+	@Id @GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
+	@NotNull
 	@Column(name = "cep", nullable = false)
 	private String cep;
 	
+	@NotNull
 	@Column(name = "logradouro", nullable = false)
 	private String logradouro;
 	
@@ -140,5 +144,32 @@ public class EnderecoEntity extends TemplateEntity<Integer>{
 	public void setCliente(ClienteEntity cliente) {
 		this.cliente = cliente;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EnderecoEntity other = (EnderecoEntity) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 
 }
